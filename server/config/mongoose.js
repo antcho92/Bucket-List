@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     fs = require('fs'),
     modelsPath = path.join(__dirname, './../models');
 
-mongoose.connect('mongodb://localhost/meanbelt');
+mongoose.connect('mongodb://localhost/meanbelt2');
 mongoose.Promise = global.Promise;
 
 fs.readdirSync(modelsPath).forEach(function(file) {
