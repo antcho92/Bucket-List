@@ -1,0 +1,24 @@
+<ul class='navbar'>
+  <li><a href="#/dashboard">Dashboard</a></li>
+  <li><a href="#/question/{{qC.question._id}}/new_answer">Answer this Question</a></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
+<h2>Question: {{qC.question.title}}</h2>
+<p>Description: {{qC.question.description}}</p>
+<div class='answers'>
+  <ul>
+    <div class='answer' ng-repeat='answer in qC.question.answers | orderBy: "-likes"'>
+      <li>
+        {{answer._user.name}} says:
+        <ul>
+          <li>Answer: {{answer.title}}</li>
+          <li>Details: {{answer.details}}</li>
+          <div class='likes'>
+            {{answer.likes}} likes
+            <button ng-click='qC.like(answer._id)'>Like</button>
+          </div>
+        </ul>
+      </li>
+    </div>
+  </ul>
+</div>

@@ -1,0 +1,12 @@
+<p>Please enter a username:</p>
+<form ng-submit='lC.login()' name='userForm'>
+  <span class='errors'>{{lC.errors.name.message}}</span>
+  <span class='errors'>{{lC.errors.session.message}}</span>
+  <input type="text" name="name" ng-model='lC.user.name' pattern='^\w+$' minlength='3' required>
+  <input type="submit">
+</form>
+<div ng-messages='userForm.name.$error' class='errors'>
+  <p ng-message='minlength'>The user name is too short</p>
+  <p ng-message='required'>User name is required</p>
+  <p ng-message='pattern'>Invalid name</p>
+</div>

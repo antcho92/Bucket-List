@@ -1,0 +1,19 @@
+<ul class='navbar'>
+  <li><a href="#/dashboard">Dashboard</a></li>
+  <li><a href="#/new_question">Ask a question</a></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
+<h2>Hello {{dC.user.name}}</h2>
+<input type="text" ng-model='qC.questionFilter.title'>
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Answers</th>
+    <th>Action</th>
+  </tr>
+  <tr ng-repeat='question in dC.questions | filter:qC.questionFilter'>
+    <td>{{question.title}}</td>
+    <td>{{question.answers.length}}</td>
+    <td><a href="#/question/{{question._id}}">Show</a> <a href="#/question/{{question._id}}/new_answer">Answer</a></td>
+  </tr>
+</table>

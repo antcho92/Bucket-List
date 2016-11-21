@@ -1,0 +1,14 @@
+<ul class='navbar'>
+  <li><a href="#/dashboard">Dashboard</a></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
+<h2>Ask a new Question</h2>
+<form ng-submit='nC.create()'>
+  <span>Question:</span><br>
+  <textarea name="title" rows="3" cols="60" placeholder="question" ng-model='nC.question.title' minlength='10' required></textarea>
+  <br>
+  <span>Description(optional):</span><br>
+  <textarea name="description" rows="4" cols="60" placeholder='description' ng-model='nC.question.description'></textarea>
+  <br>
+  <input type="submit" name="name" value="Ask!">
+</form>
