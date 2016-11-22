@@ -5,7 +5,6 @@ var Event = mongoose.model('Event');
 module.exports = (function() {
   return {
     create: function(req, res) {
-      console.log(req.body);
       User.findOne({_id: req.body.creator}, function(err, creator) {
         if (err) {throw err}
         if (req.body.joiner && req.body.joiner != req.body.creator) {
