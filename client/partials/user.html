@@ -1,0 +1,20 @@
+<ul class='navbar'>
+  <li><a href="#/dashboard">Bucket List</a></li>
+  <li><a href="#/dashboard">Dashboard</a></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
+
+<h2>{{uC.otherUser.name}}'s Bucket List</h2>
+
+<div class='done'>
+  <h3>Done</h3>
+  <ul>
+    <li ng-repeat='event in uC.done'><input type="checkbox" disabled checked='event.completed' value="">{{event.title}}</li>
+  </ul>
+</div>
+<div class='pending'>
+  <h3>Pending</h3>
+  <ul>
+    <li ng-repeat='event in uC.pending'><input type="checkbox" disabled value="">{{event.title}}</li>
+  </ul>
+</div>

@@ -16,13 +16,13 @@ var userSchema = new mongoose.Schema({
       message: '{VALUE} is not a valid name'
     }]
   },
-  questions: [{
+  events: [{
     type: Schema.Types.ObjectId,
-    ref: 'Question'
+    ref: 'Event'
   }],
-  answers: [{
+  joined: [{
     type: Schema.Types.ObjectId,
-    ref: 'Answer'
+    ref: 'Event'
   }]
 }, {
   timestamps: true

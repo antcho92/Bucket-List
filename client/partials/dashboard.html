@@ -1,19 +1,27 @@
 <ul class='navbar'>
+  <li><a href="#/dashboard">Bucket List</a></li>
   <li><a href="#/dashboard">Dashboard</a></li>
-  <li><a href="#/new_question">Ask a question</a></li>
   <li><a href="/logout">Logout</a></li>
 </ul>
-<h2>Hello {{dC.user.name}}</h2>
-<input type="text" ng-model='qC.questionFilter.title'>
-<table>
-  <tr>
-    <th>Question</th>
-    <th>Answers</th>
-    <th>Action</th>
-  </tr>
-  <tr ng-repeat='question in dC.questions | filter:qC.questionFilter'>
-    <td>{{question.title}}</td>
-    <td>{{question.answers.length}}</td>
-    <td><a href="#/question/{{question._id}}">Show</a> <a href="#/question/{{question._id}}/new_answer">Answer</a></td>
-  </tr>
-</table>
+<h2>Welcome {{dC.user.name}}</h2>
+<form ng-submit='dC.createEvent()'>
+  <input type="text" name="title" value="" required minlength='5' placeholder="title" ng-model='dC.event.title'>
+  <input type="text" name="description" value="" required minlength='10' placeholder="description" ng-model='dC.event.description'>
+  <select class="" name="" ng-model='dC.event.joiner'>
+    <option ng-repeat='user in dC.users' value="{{user._id}}">{{user.name}}</option>
+  </select>
+  <input type="submit" value="Add to List">
+</form>
+<div class='yourEvents'>
+  <h4>Before I die, I want to...</h4>
+  <ul>
+    <li ng-repeat='event in dC.user.events'><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed'>{{dC.user.name}} | {{event.title}} - {{event.description}} - {{event.createdAt | date:'mediumDate'}}</li>
+    <li ng-repeat='event in dC.user.joined'><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed'>{{dC.user.name}} | {{event.title}} - {{event.description}} - {{event.createdAt | date:'mediumDate'}}</li>
+  </ul>
+</div>
+<div class='users'>
+  <h4>List of other users (Click to view profile):</h4>
+  <ul>
+    <li ng-repeat='user in dC.users'><a href="#/user/{{user._id}}">{{user.name}}</a></li>
+  </ul>
+</div>

@@ -22,6 +22,11 @@ app.factory('usersFactory', ['$http', '$location', function($http, $location) {
         }
       });
     };
+    this.index = function(callback) {
+      $http.get('/users').then(function(res) {
+        callback(res.data);
+      })
+    }
   }
   return new UsersFactory();
 }])
