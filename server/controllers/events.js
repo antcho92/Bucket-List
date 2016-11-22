@@ -42,7 +42,7 @@ module.exports = (function() {
       Event.findOne({_id: req.body._id}, function(err, event) {
         event.completed = req.body.completed;
         event.save(function(err, event) {
-          console.log(event);
+          res.json(event);
         })
       })
     }

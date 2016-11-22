@@ -12,7 +12,5 @@ app.controller('userController', ['$scope', '$routeParams', 'dashboardFactory', 
     self.pending = user.events.concat(user.joined).filter(function(event) {
       return !event.completed;
     })
-    self.event = {};
-    console.log(user);
   }
 }])

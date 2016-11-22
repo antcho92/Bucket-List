@@ -15,7 +15,7 @@
 <div class='yourEvents'>
   <h4>Before I die, I want to...</h4>
   <ul>
-    <li ng-repeat='event in dC.user.events'><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed'>{{dC.user.name}} | {{event.title}} - {{event.description}} - {{event.createdAt | date:'mediumDate'}}</li>
+    <li ng-repeat='event in dC.user.events | orderBy:"-completed"'><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed'>{{dC.user.name}} | {{event.title}} - {{event.description}} - {{event.createdAt | date:'mediumDate'}}</li>
     <li ng-repeat='event in dC.user.joined'><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed'>{{dC.user.name}} | {{event.title}} - {{event.description}} - {{event.createdAt | date:'mediumDate'}}</li>
   </ul>
 </div>
