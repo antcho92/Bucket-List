@@ -1,9 +1,10 @@
 var mongoose = require('mongoose'),
     path = require('path'),
     fs = require('fs'),
-    modelsPath = path.join(__dirname, './../models');
+    modelsPath = path.join(__dirname, './../models'),
+    dbURI = 'mongodb://localhost/meanbelt2';
 
-mongoose.connect('mongodb://localhost/meanbelt2');
+mongoose.connect(dbURI);
 mongoose.Promise = global.Promise;
 
 mongoose.connection.on( 'connected', function () {
