@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     path = require('path'),
     fs = require('fs'),
     modelsPath = path.join(__dirname, './../models'),
-    dbURI = 'mongodb://localhost/meanbelt2';
+    dbURI = 'mongodb://localhost/bucketlist';
 
 mongoose.connect(dbURI);
 mongoose.Promise = global.Promise;
