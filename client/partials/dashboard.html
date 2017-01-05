@@ -1,27 +1,77 @@
-<ul class='navbar'>
-  <li><a href="#/dashboard">Bucket List</a></li>
-  <li><a href="#/dashboard">Dashboard</a></li>
-  <li><a href="/logout">Logout</a></li>
-</ul>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/dashboard">Bucket List</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
 <h2>Welcome {{dC.user.name}}</h2>
-<form ng-submit='dC.createEvent()'>
-  <input type="text" name="title" value="" required minlength='5' placeholder="title" ng-model='dC.event.title'>
-  <input type="text" name="description" value="" required minlength='10' placeholder="description" ng-model='dC.event.description'>
-  <select class="" name="" ng-model='dC.event.joiner'>
-    <option ng-repeat='user in dC.users' value="{{user._id}}">{{user.name}}</option>
-  </select>
-  <input type="submit" value="Add to List">
-</form>
-<div class='yourEvents'>
-  <h4>Before I die, I want to...</h4>
-  <ul>
-    <li ng-repeat='event in dC.user.events | orderBy:"-completed"'><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed'>{{dC.user.name}} | {{event.title}} - {{event.description}} - {{event.createdAt | date:'mediumDate'}}</li>
-    <li ng-repeat='event in dC.user.joined'><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed'>{{dC.user.name}} | {{event.title}} - {{event.description}} - {{event.createdAt | date:'mediumDate'}}</li>
-  </ul>
+<div class="row">
+  <div id='yourEvents' class="col-lg-6">
+    <h4>Before I die, I want to...</h4>
+    <p ng-if="!dC.user.events.length">Your bucket list is empty... so add to it!</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Event title</th>
+          <th>Description</th>
+          <th>Added Buddy</th>
+          <th>Date Created</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='event in dC.user.events | orderBy:"-completed"' id="userEvents">
+          <td>{{event.title}}</td>
+          <td>{{event.description}}</td>
+          <td>{{event.joiner.name}}</td>
+          <td>{{event.createdAt | date:'mediumDate'}}</td>
+          <td><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed'></td>
+        </tr>
+        <tr ng-repeat='event in dC.user.joined' id="joinedEvents">
+          <td>{{event.title}}</td>
+          <td>{{event.description}}</td>
+          <td>{{event.joiner.name}}</td>
+          <td>{{event.createdAt | date:'mediumDate'}}</td>
+          <td><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed'></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <form ng-submit='dC.createEvent()' class="col-lg-4">
+    <h4>Add an item to your bucket list:</h4>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" name="title" value="" required minlength='5' placeholder="title" ng-model='dC.event.title' class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" name="description" value="" required minlength='10' placeholder="description" ng-model='dC.event.description' class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="add-friend">Add a buddy to join you (optional)</label>
+      <select class="form-control" name="add-friend" ng-model='dC.event.joiner'>
+        <option ng-repeat='user in dC.users' value="{{user._id}}">{{user.name}}</option>
+      </select>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add to List</button>
+  </form>
+
+  <div id='users' class="col-lg-2">
+    <h4>Other users:</h4>
+    <ul>
+      <li ng-repeat='user in dC.users'><a href="#/user/{{user._id}}">{{user.name}}</a></li>
+    </ul>
+  </div>
+  
 </div>
-<div class='users'>
-  <h4>List of other users (Click to view profile):</h4>
-  <ul>
-    <li ng-repeat='user in dC.users'><a href="#/user/{{user._id}}">{{user.name}}</a></li>
-  </ul>
-</div>
+
+
+
+
+
+

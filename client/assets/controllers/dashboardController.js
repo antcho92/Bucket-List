@@ -16,6 +16,7 @@ app.controller('dashboardController', ['$scope', 'usersFactory', 'dashboardFacto
   }
   function getEvents(user) {
     self.user = user;
+    console.log(self.user);
     self.event = {};
   }
   this.createEvent = function() {

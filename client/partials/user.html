@@ -1,20 +1,59 @@
-<ul class='navbar'>
-  <li><a href="#/dashboard">Bucket List</a></li>
-  <li><a href="#/dashboard">Dashboard</a></li>
-  <li><a href="/logout">Logout</a></li>
-</ul>
-
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/dashboard">Bucket List</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
 <h2>{{uC.otherUser.name}}'s Bucket List</h2>
-
-<div class='done'>
-  <h3>Done</h3>
-  <ul>
-    <li ng-repeat='event in uC.done'><input type="checkbox" disabled checked='event.completed' value="">{{event.creator.name}} | {{event.title}} - {{event.description}} - {{event.createdAt | date:'mediumDate'}}</li>
-  </ul>
-</div>
-<div class='pending'>
-  <h3>Pending</h3>
-  <ul>
-    <li ng-repeat='event in uC.pending'><input type="checkbox" disabled value="">{{event.creator.name}} | {{event.title}} - {{event.description}} - {{event.createdAt | date:'mediumDate'}}</li>
-  </ul>
+<div class="row">
+  <div class="col-md-6" id='done'>
+    <h3>Done</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Event Creator</th>
+          <th>Event Title</th>
+          <th>Description</th>
+          <th>Date Created</th>
+          <th>Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='event in uC.done'>
+          <td>{{event.creator.name}}</td>
+          <td>{{event.title}}</td>
+          <td>{{event.description}}</td>
+          <td>{{event.createdAt | date:'mediumDate'}}</td>
+          <td><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed' disabled></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6" id="pending">
+    <h3>Pending</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Event Creator</th>
+          <th>Event Title</th>
+          <th>Description</th>
+          <th>Date Created</th>
+          <th>Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat='event in uC.pending'>
+          <td>{{event.creator.name}}</td>
+          <td>{{event.title}}</td>
+          <td>{{event.description}}</td>
+          <td>{{event.createdAt | date:'mediumDate'}}</td>
+          <td><input type="checkbox" checked='{{event.completed}}' ng-click='dC.checked(event)' ng-model='event.completed' disabled></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

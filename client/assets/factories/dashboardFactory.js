@@ -8,6 +8,7 @@ app.factory('dashboardFactory', ['$http', '$location', function($http, $location
     };
     this.getMyEvents = function(userId, callback) {
       $http.get(`/events/${userId}`).then(function(res) {
+        // console.log(res.data, "user");
         callback(res.data);
       })
     };

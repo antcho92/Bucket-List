@@ -18,17 +18,17 @@ module.exports = (function() {
         path: 'events',
         model: 'Event',
         populate: {
-          path: 'joiner',
+          path: 'joiner creator',
           model: 'User'
-        }
+        },
       })
       .populate({
         path: 'joined',
         model: 'Event',
         populate: {
-          path: 'creator',
+          path: 'creator joiner',
           model: 'User'
-        }
+        },
       })
       .exec(function(err, user) {
         if (err) {console.log(err)}
